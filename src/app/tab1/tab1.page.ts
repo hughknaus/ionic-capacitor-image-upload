@@ -20,10 +20,10 @@ export class Tab1Page implements OnInit {
     let imgPromise = from(this.getImage());
     this.photo$ = imgPromise.pipe(
       map(res => res.data),
-      tap(data => { 
+      tap(data => {
         console.log(`Tab1Page::data`, data);
       }),
-      map(responseTypeBlob => { 
+      map(responseTypeBlob => {
         var blob = this.toBlob(`data:image/jpeg;base64,${responseTypeBlob}`);
         // const uInt8Array = new Uint8Array(binaryData);
         // var blob = new Blob([uInt8Array], { type: "image/jpeg" });
@@ -68,7 +68,7 @@ export class Tab1Page implements OnInit {
 
     return CapacitorHttp.post({
       url: `${this.url}/image`,
-      headers: { "Content-Type": "image/jpeg" }, 
+      headers: { "Content-Type": "image/jpeg" },
       webFetchExtra: { credentials: 'include' },
     });
   }
@@ -125,12 +125,11 @@ export class Tab1Page implements OnInit {
     const rawData = window.atob(base64String);
     const bytes = new Array(rawData.length);
     for (var x = 0; x < rawData.length; x++) {
-        bytes[x] = rawData.charCodeAt(x);
+      bytes[x] = rawData.charCodeAt(x);
     }
     const arr = new Uint8Array(bytes);
     const blob = new Blob([arr], { type: imageType });
 
     return blob;
-}
-
+  }
 }
