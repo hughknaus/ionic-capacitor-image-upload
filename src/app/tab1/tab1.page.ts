@@ -68,6 +68,7 @@ export class Tab1Page implements OnInit {
 
     return CapacitorHttp.post({
       url: `${this.url}/image`,
+      headers: { "Content-Type": "image/jpeg" }, 
       webFetchExtra: { credentials: 'include' },
     });
   }
